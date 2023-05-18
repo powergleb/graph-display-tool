@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace core.Interface
 {
-    interface IDatabaseTablesProvider
+    public interface IDatabaseTablesProvider
     {
         List<string> GetTables(string connectionString);
     }

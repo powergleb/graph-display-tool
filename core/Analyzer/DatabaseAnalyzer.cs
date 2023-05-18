@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace core.Analyzer
 {
-    class DatabaseAnalyzer : IDatabaseAnalyzer
+    public class DatabaseAnalyzer : IDatabaseAnalyzer
     {
         private readonly IDatabaseTablesProvider tablesProvider;
 

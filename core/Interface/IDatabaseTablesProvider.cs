@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace core.Interface
 {
-    interface IDatabaseAnalyzer
+    public interface IDatabaseAnalyzer
     {
         Dictionary<string, List<Tuple<string, List<string>>>> GetTableAdjacencyList(string connectionString);
     }

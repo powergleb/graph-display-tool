@@ -5,7 +5,7 @@ class Program
 {
     static void Main()
     {
-        string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=ExchangeDB;Integrated Security=True"; // Замените на свою строку подключения к базе данных
+        string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=ExchangeDB;Integrated Security=True";
 
         IDatabaseTablesProvider tablesProvider = new DatabaseTablesProvider();
         IDatabaseAnalyzer analyzer = new DatabaseAnalyzer(tablesProvider);
@@ -31,7 +31,7 @@ class Program
 
             Console.WriteLine();
         }
-
         Console.ReadLine();
     }
+    
 }

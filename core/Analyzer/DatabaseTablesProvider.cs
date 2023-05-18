@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace core.Analyzer
 {
-    class DatabaseTablesProvider : IDatabaseTablesProvider
+    public class DatabaseTablesProvider : IDatabaseTablesProvider
     {
         public List<string> GetTables(string connectionString)
         {
