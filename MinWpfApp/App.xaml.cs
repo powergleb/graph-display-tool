@@ -88,10 +88,7 @@ namespace MinWpfApp
             // Применение ресурсов
 
 
-            appWindow.Show();
-  
-
-            
+            appWindow.Show(); 
            
         }
 
@@ -121,6 +118,8 @@ namespace MinWpfApp
                     popup.IsOpen = true;
                     popup.HorizontalOffset = e.X;
                     popup.VerticalOffset = e.Y;
+                    textBlock.Background = new SolidColorBrush(System.Windows.Media.Color.FromArgb(250,250, 218, 211));
+                    textBlock.Foreground = System.Windows.Media.Brushes.Navy;
                     textBlock.Text = "Each " + table + " have many " + relatedTableName;
                 }
                 else
@@ -284,7 +283,7 @@ namespace MinWpfApp
 
                                 }*/
                 Graph graph = new Graph("Database Relationships");
-                string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=TestDB;Integrated Security=True";
+                string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=ExchangeDB;Integrated Security=True";
 
                 IPrimaryKeyFinder primaryKeyFinder = new PrimaryKeyFinder();
                 IRelatedTablesFinder relatedTablesFinder = new RelatedTablesFinder();
@@ -305,7 +304,7 @@ namespace MinWpfApp
                 foreach (DataRow row in resultTable.Rows)
                 {
                     //graph.FindNode(row["RelatedTables"].ToString()).LabelText += "\nSize: " + row["ForeignKey"].ToString();
-                    graph.AddEdge(row["TableName"].ToString(), row["RelatedTables"].ToString());
+                    graph.AddEdge(row["TableName"].ToString(), row["RelatedTables"].ToString()).Attr.ArrowheadAtTarget = ArrowStyle.ODiamond;
 
                 }
                 foreach (DataRow row in resultTable.Rows)
@@ -316,15 +315,19 @@ namespace MinWpfApp
 
                 foreach (var node in graph.Nodes)
                 {
-                        node.Attr.Shape = Shape.Box;
+
+                    node.Label.FontColor = Microsoft.Msagl.Drawing.Color.Navy;
+                    node.Attr.Shape = Shape.Box;
+                    node.Attr.FillColor = Microsoft.Msagl.Drawing.Color.Beige;
                         node.DrawNodeDelegate = new DelegateToOverrideNodeRendering(DrawNode);
                         node.NodeBoundaryDelegate = new DelegateToSetNodeBoundary(GetNodeBoundary);
                 }
-               /* var node1 = graph.Nodes.First();
-                Microsoft.Msagl.Drawing.Node visnode = new Microsoft.Msagl.Drawing.Node($"{node1.Id}: {node1.LabelText}") { UserData = "wrtwrt" };
-                visnode.NodeBoundaryDelegate = GetNodeBoundary;
-                visnode.DrawNodeDelegate = DrawNode;
-                graph.AddNode(visnode);*/
+               
+                /* var node1 = graph.Nodes.First();
+                 Microsoft.Msagl.Drawing.Node visnode = new Microsoft.Msagl.Drawing.Node($"{node1.Id}: {node1.LabelText}") { UserData = "wrtwrt" };
+                 visnode.NodeBoundaryDelegate = GetNodeBoundary;
+                 visnode.DrawNodeDelegate = DrawNode;
+                 graph.AddNode(visnode);*/
 
                 /*                graph.Attr.LayerDirection = LayerDirection.LR;
 
@@ -347,13 +350,12 @@ namespace MinWpfApp
 
         private  bool DrawNode(Microsoft.Msagl.Drawing.Node node, object graphics)
         {
-            Graphics g = (Graphics)graphics;
-            Node n = (Node)node.UserData;
-            var x = (float)node.GeometryNode.Center.X;
-            var y = (float)node.GeometryNode.Center.Y;
-            PointF p = new PointF(x,y);
-            g.DrawString("1341341", new Font("Arial", 16), Brushes.Black, p);
-            return true;
+            var graphic = (Graphics)graphics;
+            Font drawFont = new Font("Arial", 16);
+            graphic.DrawString("13413413413", drawFont, Brushes.Navy, new PointF(1, 2));
+
+
+            return (true);
         }
 
 
