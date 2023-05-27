@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="AutomaticGraphLayout.WpfGraphControl" Version="1.1.12" />
-    <PackageReference Include="Microsoft.Msagl" Version="1.1.6" />
     <PackageReference Include="Pluralize.NET.Core" Version="1.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

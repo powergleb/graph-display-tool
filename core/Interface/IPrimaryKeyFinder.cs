@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace core.Interface
 {
-    public interface IDatabaseAnalyzer
+    public interface IPrimaryKeyFinder
     {
-        Dictionary<string, List<Tuple<string, List<string>>>> GetTableAdjacencyList(string connectionString);
+        string GetPrimaryKey(SqlConnection connection, string tableName);
     }
 }
