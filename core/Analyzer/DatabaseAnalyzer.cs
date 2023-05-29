@@ -75,10 +75,6 @@ namespace core.Analyzer
             {
                 connection.Open();
 
-          /*      string query = $@"SELECT OBJECT_NAME(fk.parent_object_id) AS ReferencedTable,
-                                     fk.name AS ForeignKeyName
-                              FROM sys.foreign_keys fk
-                              WHERE OBJECT_NAME(fk.referenced_object_id) = '{tableName}'";*/
                 string query = $@"
     SELECT
         OBJECT_NAME(fkc.parent_object_id) AS TableName,
