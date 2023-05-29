@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace core.Interface
 {
-    public interface IPrimaryKeyFinder
+    public interface IDatabaseSchemaReader
     {
-        string GetPrimaryKey(SqlConnection connection, string tableName);
+        DataTable GetTablesSchema(string connectionString);
     }
 }

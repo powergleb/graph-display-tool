@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace core.Entity
 {
-    public class RelatedTable
+    public class Table
     {
         public string TableName { get; set; }
-        public string ForeignKey { get; set; }
-
-        public RelatedTable(string tableName, string foreignKey)
+        public string PrimaryKey { get; set; }
+        public List<Tuple<String, Table>> ForeignKeys { get; set; }
+        public Table()
         {
-            TableName = tableName;
-            ForeignKey = foreignKey;
+            ForeignKeys = new List<Tuple<string, Table>>();
         }
+
+
     }
 }

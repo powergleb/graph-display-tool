@@ -1,55 +1,41 @@
 ﻿using core.Analyzer;
+using core.Entity;
 using core.Interface;
 using System.Data;
+using System.Data.SqlClient;
+
 
 class Program
 {
     static void Main()
     {
-        /* string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=ExchangeDB;Integrated Security=True";
+        
 
-         IDatabaseTablesProvider tablesProvider = new DatabaseTablesProvider();
-         IDatabaseAnalyzer analyzer = new DatabaseAnalyzer(tablesProvider);
+        string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=TSJ;Integrated Security=True";
 
-         Dictionary<string, List<Tuple<string, List<string>>>> adjacencyList = analyzer.GetTableAdjacencyList(connectionString);
+        IDatabaseSchemaReader schemaReader = new SqlDatabaseSchemaReader();
+        IDatabaseAnalyzer analyzer = new DatabaseAnalyzer(schemaReader);
 
-         foreach (var entry in adjacencyList)
-         {
-             string table = entry.Key;
-             List<Tuple<string, List<string>>> relatedTables = entry.Value;
+        List<Table> tables = analyzer.GetTables(connectionString);
 
-             Console.WriteLine("Table: " + table);
+            foreach (Table table in tables)
+            {
+                Console.WriteLine("Table: " + table.TableName);
+                Console.WriteLine("Primary Key: " + table.PrimaryKey);
 
-             foreach (Tuple<string, List<string>> relatedTable in relatedTables)
-             {
-                 string relatedTableName = relatedTable.Item1;
-                 List<string> columns = relatedTable.Item2;
+                if (table.ForeignKeys.Count > 0)
+                {
+                    Console.WriteLine("Foreign Keys:");
+                    foreach (Tuple<string, Table> foreignKey in table.ForeignKeys)
+                    {
+                        Console.WriteLine(foreignKey.Item1 + " -> " + foreignKey.Item2.TableName);
+                    }
+                }
 
-                 Console.WriteLine("Related Table: " + relatedTableName);
-                 Console.WriteLine("Columns: " + string.Join(", ", columns));
-                 Console.WriteLine();
-             }
+                Console.WriteLine();
+            }
 
-             Console.WriteLine();
-         }
-         Console.ReadLine();*/
-        string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=TestDB;Integrated Security=True";
-
-        IPrimaryKeyFinder primaryKeyFinder = new PrimaryKeyFinder();
-        IRelatedTablesFinder relatedTablesFinder = new RelatedTablesFinder();
-
-        TableRelationAnalyzer analyzer = new TableRelationAnalyzer(connectionString, primaryKeyFinder, relatedTablesFinder);
-        DataTable resultTable = analyzer.AnalyzeDatabase();
-
-        // Вывод результатов на консоль
-        foreach (DataRow row in resultTable.Rows)
-        {
-            Console.WriteLine($"Table: {row["TableName"]}");
-            Console.WriteLine($"Primary Key: {row["PrimaryKey"]}");
-            Console.WriteLine($"Related Tables: {row["RelatedTables"]}");
-            Console.WriteLine($"Foreign Key: {row["ForeignKey"]}");
-            Console.WriteLine();
-        }
+            Console.ReadLine();
+        
     }
-    
 }

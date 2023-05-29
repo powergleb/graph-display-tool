@@ -1,15 +1,14 @@
 ﻿using core.Entity;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace core.Interface
 {
-    public interface IRelatedTablesFinder
+    public interface IDatabaseAnalyzer
     {
-        List<RelatedTable> GetRelatedTables(SqlConnection connection, string tableName);
+        List<Table> GetTables(string connectionString);
     }
 }
