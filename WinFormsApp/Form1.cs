@@ -169,6 +169,9 @@ namespace WinFormsApp
         private void InitGraph()
         {
             Graph graph = new Graph("Database Relationships");
+
+
+            //PUT YOUR CONNECTION STRING HERE!
             string connectionString = "Data Source=DESKTOP-6M0QU9E\\SQLEXPRESS;Initial Catalog=TestDB;Integrated Security=True";
 
             IDatabaseSchemaReader schemaReader = new SqlDatabaseSchemaReader();
